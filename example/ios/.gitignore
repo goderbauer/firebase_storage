@@ -36,3 +36,7 @@ Pods/
 /Flutter/Flutter.framework
 /Flutter/Generated.xcconfig
 /ServiceDefinitions.json
+
+Podfile.lock
+/Runner/GeneratedPluginRegistrant.h
+/Runner/GeneratedPluginRegistrant.m

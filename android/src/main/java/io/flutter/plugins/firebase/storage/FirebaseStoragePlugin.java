@@ -4,23 +4,22 @@
 
 package io.flutter.plugins.firebase.storage;
 
+import android.app.Activity;
 import android.net.Uri;
 
-import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.OnFailureListener;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
-import io.flutter.app.FlutterActivity;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.MethodCall;
+import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 import java.util.Map;
 import java.io.File;
@@ -29,18 +28,17 @@ import java.io.File;
  * FirebaseStoragePlugin
  */
 public class FirebaseStoragePlugin implements MethodCallHandler {
-  private FlutterActivity activity;
   private FirebaseStorage firebaseStorage;
 
-  public static FirebaseStoragePlugin register(FlutterActivity activity) {
-    return new FirebaseStoragePlugin(activity);
+  public static void registerWith(Registrar registrar) {
+    final MethodChannel channel = new MethodChannel(registrar.messenger(), "firebase_storage");
+    channel.setMethodCallHandler(new FirebaseStoragePlugin(registrar.activity()));
   }
 
-  private FirebaseStoragePlugin(FlutterActivity activity) {
-    this.activity = activity;
+
+  private FirebaseStoragePlugin(Activity activity) {
     FirebaseApp.initializeApp(activity);
     this.firebaseStorage = FirebaseStorage.getInstance();
-    new MethodChannel(activity.getFlutterView(), "firebase_storage").setMethodCallHandler(this);
   }
 
   @Override

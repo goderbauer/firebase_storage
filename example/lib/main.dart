@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _fileContents == null ?
             new Text('Press the button to upload a file') :
             new Text(
-              'Success!\n\nFile contents: "${_fileContents}"',
+              'Success!\n\nFile contents: "$_fileContents"',
               style: const TextStyle(color: const Color.fromARGB(255, 0, 155, 0)),
             )
           ],

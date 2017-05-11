@@ -1,16 +1,12 @@
 #include "AppDelegate.h"
-#include "PluginRegistry.h"
+#include "GeneratedPluginRegistrant.h"
 
-@implementation AppDelegate {
-  PluginRegistry *plugins;
-}
+@implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  FlutterViewController *flutterController =
-      (FlutterViewController *)self.window.rootViewController;
-  plugins = [[PluginRegistry alloc] initWithController:flutterController];
-  return YES;
+didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [GeneratedPluginRegistrant registerWithRegistry:self];
+  return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 @end
