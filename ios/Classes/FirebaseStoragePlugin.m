@@ -23,7 +23,6 @@
   [FlutterMethodChannel methodChannelWithName:@"firebase_storage"
                               binaryMessenger:[registrar messenger]];
   FirebaseStoragePlugin *instance = [[FirebaseStoragePlugin alloc] init];
-  [registrar addApplicationDelegate:instance];
   [registrar addMethodCallDelegate:instance channel:channel];
 }
 
